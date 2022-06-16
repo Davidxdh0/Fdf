@@ -1,0 +1,10 @@
+validate input
+parse input in list
+
+-
+-minilib window maken
+-exit
+-etc
+
+Godverdomme lijn tekenen :)
+alles free'en
