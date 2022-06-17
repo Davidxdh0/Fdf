@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 12:46:43 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/06/16 18:13:05 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/06/17 15:47:35 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,5 @@ t_matrix	**fill_matrix(int x, int y, char *file);
 void		printlist(t_matrix **matrix, int x, int y);
 
 //draw.c
-void DDA	(int x, int y, int x1, int y1, char *img);
+void DDA	(int x, int y, int x1, int y1, t_data img);
 

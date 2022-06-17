@@ -6,7 +6,7 @@
 #    By: dyeboa <dyeboa@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/26 14:06:32 by dyeboa        #+#    #+#                  #
-#    Updated: 2022/06/16 18:06:37 by dyeboa        ########   odam.nl          #
+#    Updated: 2022/06/17 15:03:13 by dyeboa        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME		= 	fdf
 CC 			= 	gcc
 
-CFLAGS 		= 	-Wall -Wextra -Werror -Imlx
+CFLAGS 		= 	-Wall -Wextra -Werror -Imlx -g
 VPATH 		= 	src
 
 SRC_FILES 	=	main.c \

@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:24:42 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/06/16 18:15:55 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/06/17 20:24:56 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,20 @@ int	create_window(t_matrix **matrix)
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
 								&img.endian);
 	i = 0;
-	matrix[i][0].z = 1;
 	while (i < 3)
 	{
 		j = 0;
 		while (j < 11)
 		{
-			DDA(matrix[i][j].z, matrix[i][j].z, matrix[i][j+1].z, matrix[i+1][j].z, img.img);
-			//my_mlx_pixel_put(&img, i, j, 0x00FF0000+i*300);
+			//void DDA(int x, int y, int x1, int y1, int *img)
+			//printf("%.0f ", matrix[i][j].z);
+			DDA(j*20, (matrix[i][j].z + i)*20, (j+1)*20, (matrix[i][j].z + i + 1)*20, img);
+			DDA(j*20, (matrix[i][j].z + i)*20, (j+1)*20, (matrix[i][j].z + i + 1)*20, img);
+			//DDA(0, 0, 0, 0, img);
+			//my_mlx_pixel_put(&img, i+500, j+500, 0x00FF0000+i*300);
+			//my_mlx_pixel_put(img, x, y, 0x00FF0000);
+			
+			//printf("reader x = %d, y = %d\n", frame->max_x, frame->max_y);
 			j++;
 		}
 		i++;

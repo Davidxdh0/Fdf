@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/05 08:09:44 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/06/16 18:16:19 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/06/17 15:33:49 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_matrix	**reader(int argc, char *file)
 		frame->max_y = county(file);
 		matrix = fill_matrix(frame->max_x, frame->max_y, file);
 		
-		//printf("reader x = %d, y = %d\n", frame->max_x, frame->max_y);
+		
 	}
 	else
 	{	
@@ -46,8 +46,10 @@ t_matrix	**reader(int argc, char *file)
 int	main(int argc, char **argv)
 {
 	t_matrix **matrix;
+	//t_data img;
 	
 	matrix = reader(argc, argv[1]);
 	create_window(matrix);
+	//DDA(0, 0, 0, 0, img.img);
 	return (0);
 }
