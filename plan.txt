@@ -8,3 +8,22 @@ parse input in list
 
 Godverdomme lijn tekenen :)
 alles free'en
+
+plan:
+argc + open
+check line op lengtes en getallen
+open file
+fill alles in list - 2-3 structs
+mlx
+	init
+	mlx_new_window
+	mlx_new_image
+	mlx_get_data_addr
+
+key = free - exit 
+	mlx_destroy_image
+	clear window
+
+pixel algoritme
+
+mlx hook en loop

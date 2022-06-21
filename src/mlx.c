@@ -6,12 +6,13 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:24:42 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/06/17 20:24:56 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/06/21 17:08:36 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+// int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
@@ -20,50 +21,53 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	closes(int keycode, t_data *vars)
+int	closes(int keycode, t_data *data)
 {
 	keycode++;	
-	mlx_destroy_image(vars->mlx, vars->win);
-	mlx_destroy_window(vars->mlx, vars->win);
-	free(vars->mlx);
-	free(vars->win);
-	free(vars);
+	mlx_destroy_image(data->mlx, data->win);
+	mlx_destroy_window(data->mlx, data->win);
+	//free_arr(matrix);
+	//clear window?
 	return (0);
 }
 
-int	create_window(t_matrix **matrix)
+void	create_window(t_data *data)
 {
-	t_data	img;
-	t_data 	vars;
-	
+	data->mlx = mlx_init();
+	data->win = mlx_new_window(data->mlx, 1920, 1080, "Hello Fdf!");
+	data->img = mlx_new_image(data->mlx, 1920, 1080);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length,
+								&data->endian);
+}
+
+int draw(t_matrix **matrix, t_data *data)
+{
 	int i;
 	int j;
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(vars.mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								&img.endian);
+	
 	i = 0;
-	while (i < 3)
+	while (i < 11)
 	{
 		j = 0;
-		while (j < 11)
+		while (j < 19)
 		{
-			//void DDA(int x, int y, int x1, int y1, int *img)
-			//printf("%.0f ", matrix[i][j].z);
-			DDA(j*20, (matrix[i][j].z + i)*20, (j+1)*20, (matrix[i][j].z + i + 1)*20, img);
-			DDA(j*20, (matrix[i][j].z + i)*20, (j+1)*20, (matrix[i][j].z + i + 1)*20, img);
-			//DDA(0, 0, 0, 0, img);
-			//my_mlx_pixel_put(&img, i+500, j+500, 0x00FF0000+i*300);
-			//my_mlx_pixel_put(img, x, y, 0x00FF0000);
+			printf("%.0f ", (matrix[i][j].z));
+			// if ((matrix[i][j].z) > 5)
+			// 	draw_dots(0, j*20+500, (matrix[i][j].z + i)+i*10 + 500, img);
+			// else
+			// 	draw_dots(1, j*20+500, (matrix[i][j].z + i)+i*10 + 500, img);
+			if (i + 1 < 11)
+				breshelper(j*30+400, (matrix[i][j].z+i)+i*20+400, j*30+401, (matrix[i+1][j].z+i)+i*20+400, data);
+			else
+				breshelper(j*30+400, (matrix[i][j].z+i)+i*20+400, j*30+401, (matrix[i][j].z+i)+i*20+400, data);
+			
 			
 			//printf("reader x = %d, y = %d\n", frame->max_x, frame->max_y);
 			j++;
 		}
+		printf("\n");
 		i++;
 	}
-	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
-	mlx_hook(vars.win, 2, 1L<<0, closes, &vars);
-	mlx_loop(vars.mlx);
-	return (0);
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	return (1);
 }

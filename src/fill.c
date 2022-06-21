@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   lists.c                                            :+:    :+:            */
+/*   fill.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 12:35:31 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/06/16 16:02:25 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/06/21 16:37:11 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-t_frame	*list_new()
-{
-	t_frame	*frame;
-
-	frame = malloc(sizeof(frame));
-	if (!frame)
-		return (NULL);
-	frame->max_x = 0;
-	frame->max_y = 0;
-	frame->max_z = 0;
-	frame->min_z = 0;
-	return (frame);
-}
 
 t_matrix	**fill_matrix(int x, int y, char *file)
 {
@@ -44,12 +30,14 @@ t_matrix	**fill_matrix(int x, int y, char *file)
 		y_i = 0;
 		while (y_i < x)
 		{
+			matrix[x_i][y_i].x = y_i;
+			matrix[x_i][y_i].y = x_i;
 			matrix[x_i][y_i].z = height(x_i, y_i, file);
 			y_i++;
 		}
 		x_i++;
 	}
-	printlist(matrix, x, y);
+	//printlist(matrix, x, y);
 	return (matrix);
 }
 
@@ -72,8 +60,8 @@ int	height(int x, int y, char *file)
 		array = ft_split(get_next_line(fd), ' ');
 		x--;
 	}
-	//printf("z = %d\n", atoi(array[y]));
-	free(array);
+	if (!array)
+		free_arr(array);
 	close(fd);
 	return (atoi(array[y]));
 }
@@ -89,11 +77,12 @@ void	printlist(t_matrix **matrix, int x, int y)
 		j = 0;
 		while(j < x)
 		{
+			//printf("%.0f ", matrix[i][j].x);
+			//printf("%.0f ", matrix[i][j].y);
 			printf("%.0f ", matrix[i][j].z);
 			j++;
 		}
 		printf("\n");
 		i++;
 	}
-	//printf("i = %d, j = %d \n", i, j);
 }
