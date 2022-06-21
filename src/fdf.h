@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 12:46:43 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/06/21 17:01:59 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/06/21 18:05:08 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,8 @@
 #include <mlx.h>
 #include <fcntl.h>
 #include <stdio.h>
-#include<math.h>
+#include <math.h>
 
-typedef struct s_frame
-{
-	int max_x;
-	int max_y;
-	int max_z;
-	int min_z;
-}		t_frame;
 
 typedef struct s_matrix
 {

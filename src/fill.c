@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 12:35:31 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/06/21 16:37:11 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/06/21 18:05:22 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	height(int x, int y, char *file)
 	if (!array)
 		free_arr(array);
 	close(fd);
-	return (atoi(array[y]));
+	return (ft_atoi(array[y]));
 }
 
 void	printlist(t_matrix **matrix, int x, int y)
