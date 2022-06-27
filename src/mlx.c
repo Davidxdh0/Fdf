@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:24:42 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/06/23 13:56:51 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/06/27 18:04:38 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,17 @@ int draw(t_matrix **matrix, t_data *data)
 		while (j < 19)
 		{
 			//printf("%.0f ", (matrix[i][j].z));
-			// if ((matrix[i][j].z) > 5)
-			// 	draw_dots(0, j*20+500, (matrix[i][j].z + i)+i*10 + 500, img);
-			// elses
-			// 	draw_dots(1, j*20+500, (matrix[i][j].z + i)+i*10 + 500, img);
-			if (i + 1 < 11)
-				breshelper(j*30+400, (matrix[i][j].z+i)+i*20+400, j*30+401, (matrix[i+1][j].z+i)+i*20+400, data);
+			//draw_dots(0, j*20+500, (matrix[i][j].z + i)+i*10 + 500, data);
+			
+			if ((matrix[i][j].z) > 5)
+				draw_dots(0, j*20+1000, i*20 + 500, data);
 			else
-				breshelper(j*30+400, (matrix[i][j].z+i)+i*20+400, j*30+401, (matrix[i][j].z+i)+i*20+400, data);
+				draw_dots(1, j*20+1000, i*20 + 500, data);
+			
+			// if (i + 1 < 11)
+			// 	breshelper(j*30+400, (matrix[i][j].z+i)+i*20+400, j*30+401, (matrix[i+1][j].z+i)+i*20+400, data);
+			// else
+			// 	breshelper(j*30+400, (matrix[i][j].z+i)+i*20+400, j*30+401, (matrix[i][j].z+i)+i*20+400, data);
 			
 			
 			//printf("reader x = %d, y = %d\n", frame->max_x, frame->max_y);

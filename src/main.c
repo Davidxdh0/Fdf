@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/05 08:09:44 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/06/23 13:56:29 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/06/27 15:37:55 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_matrix	**reader(int argc, char *file, t_data *data)
 {
-	t_matrix **matrix;
+	//t_matrix **matrix;
 	int fd;
 	int i;
 
@@ -28,14 +28,15 @@ t_matrix	**reader(int argc, char *file, t_data *data)
 		}
 		data->max_x = countx(file);
 		data->max_y = county(file);
-		matrix = fill_matrix(data->max_x, data->max_y, file);
+		data->matrix = fill_matrix(data->max_x, data->max_y, file);
 	}
 	else
 	{	
 		printf("reader, argc != 2");
 		exit(1);
 	}
-	return (matrix);
+	close(fd);
+	return (data->matrix);
 }
 
 int	main(int argc, char **argv)
@@ -43,12 +44,7 @@ int	main(int argc, char **argv)
 	t_matrix	**matrix;
 	t_data		data;
 	
-	if (argc != 2)
-	{
-		printf("!Argv");
-		exit(1);
-	}
-	matrix = reader(argc, argv[1], &data);
+	matrix = reader(argc, argv[1], &data); //parser
 	//printf("x=%d, y=%d", data.max_x, data.max_y );
 	create_window(&data);
 	draw(matrix, &data);

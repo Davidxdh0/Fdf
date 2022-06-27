@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:47:36 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/06/21 16:53:31 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/06/27 18:14:51 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,48 @@
 //     }
 // }
 
-// void draw_dots(int colour, int x, int y, t_data *data)
-// {
-//     int i;
+void draw_dots(int colour, int x, int y, t_data *data)
+{
+    int i;
+    int j;
+    int ix;
+    int iy;
 
-//     i = 0;
-//     if (colour == 0)
-//         my_mlx_pixel_put(&data, x, y, 0x00FF0000);
-//     else
-//         my_mlx_pixel_put(&data, x, y, 0x00FFFF00);
-// }
+    ix = x - y;
+    iy = (x + y)/2;
+    i = (y-500)/20;
+    j = (x-1000)/20;
+    printf("%d en %d\n", ix, iy);
+    if (colour == 0)
+        my_mlx_pixel_put(data, ix, iy, 0x00FF0000);
+    else
+        my_mlx_pixel_put(data, ix, iy, 0x00FFFF00);
+    if (i < 10 && j < 18)
+		draw_ugly_line(ix, iy, data);
+    //printf("x = %d, y = %d\n", x, y);
+    
+}
+
+void draw_ugly_line(int ix, int iy, t_data *data)
+{
+    int slope;
+    int ix2;
+    int iy2;
+
+    ix2 = ix - 20;
+    iy2 = iy + 10;
+   // printf("%d, %d, %d, %d\n", iy2,iy,ix2,ix);
+    slope = (iy2 - iy)/(ix2 - ix);
+    while (ix < ix2)
+    {
+        iy2 = slope*(ix2-ix) + iy;
+        // printf("y = %d, y2 = %f\n", y, y2);
+        // printf("x = %d, x2 = %f\n", x, x2);
+        // if (x2 - x == 2)
+        my_mlx_pixel_put(data, ix, iy2, 0x00FF0000);
+        ix--;
+    }
+}
 
 void breshelper(int x1, int y1, int x2, int y2, t_data *data)
 {
