@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:24:42 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/06/21 17:08:36 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/06/23 13:56:51 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-int	closes(int keycode, t_data *data)
+int	keypress(int keycode, t_data *data)
 {
-	keycode++;	
+	keycode++;
+		
 	mlx_destroy_image(data->mlx, data->win);
 	mlx_destroy_window(data->mlx, data->win);
 	//free_arr(matrix);
@@ -33,6 +34,7 @@ int	closes(int keycode, t_data *data)
 
 void	create_window(t_data *data)
 {
+	//printf("test %.0f ", (data->matrix[1][1].z));
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, 1920, 1080, "Hello Fdf!");
 	data->img = mlx_new_image(data->mlx, 1920, 1080);
@@ -51,10 +53,10 @@ int draw(t_matrix **matrix, t_data *data)
 		j = 0;
 		while (j < 19)
 		{
-			printf("%.0f ", (matrix[i][j].z));
+			//printf("%.0f ", (matrix[i][j].z));
 			// if ((matrix[i][j].z) > 5)
 			// 	draw_dots(0, j*20+500, (matrix[i][j].z + i)+i*10 + 500, img);
-			// else
+			// elses
 			// 	draw_dots(1, j*20+500, (matrix[i][j].z + i)+i*10 + 500, img);
 			if (i + 1 < 11)
 				breshelper(j*30+400, (matrix[i][j].z+i)+i*20+400, j*30+401, (matrix[i+1][j].z+i)+i*20+400, data);

@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 12:46:43 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/06/21 18:05:08 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/06/23 13:54:18 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_matrix
 }			t_matrix;
 
 typedef struct	s_data {
+	t_matrix	**matrix;
 	void	*img;
 	void	*mlx;
 	void	*win;
@@ -49,7 +50,7 @@ int 		county(char *file);
 
 //mlx.C
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int			closes(int keycode, t_data *vars);
+int			keypress(int keycode, t_data *vars);
 void		create_window(t_data *data);
 int 		draw(t_matrix **matrix, t_data *data);
 

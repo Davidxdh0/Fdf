@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/05 08:09:44 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/06/21 17:07:50 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/06/23 13:56:29 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	create_window(&data);
 	draw(matrix, &data);
 	//stuur matrix met data mee.
-	mlx_hook(data.win, 2, 1L<<0, closes, &data);
+	mlx_hook(data.win, 2, 1L<<0, keypress, &data);
 	mlx_loop(data.mlx);
 	return (0);
 }
