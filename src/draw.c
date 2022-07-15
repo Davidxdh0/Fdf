@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:47:36 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/06/27 18:14:51 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/15 18:07:01 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,18 @@
 //     }
 // }
 
-void draw_dots(int colour, int x, int y, t_data *data)
+void    draw_dots(int colour, int x, int y, t_data *data)
 {
     int i;
     int j;
     int ix;
     int iy;
-
+    
     ix = x - y;
     iy = (x + y)/2;
     i = (y-500)/20;
     j = (x-1000)/20;
-    printf("%d en %d\n", ix, iy);
+    //printf("%d en %d\n", ix, iy);
     if (colour == 0)
         my_mlx_pixel_put(data, ix, iy, 0x00FF0000);
     else
@@ -155,4 +155,38 @@ void bresehamline(int x1, int y1, int x2, int y2, int dx, int dy, int decide, t_
         }
         i++;
     }
+}
+
+int draw(t_data *data)
+{
+	int i;
+	int j;
+	
+	i = 0;
+	while (i < 11)
+	{
+		j = 0;
+		while (j < 19)
+		{
+			//printf("%.0f ", (matrix[i][j].z));
+			//draw_dots(0, j*20+500, (matrix[i][j].z + i)+i*10 + 500, data);
+			
+			if ((data->matrix[i][j].z) > 5)
+				draw_dots(0, j*20+1000, i*20 + 500, data);
+			else
+				draw_dots(1, j*20+1000, i*20 + 500, data);
+			
+			// if (i + 1 < 11)
+			// 	breshelper(j*30+400, (matrix[i][j].z+i)+i*20+400, j*30+401, (matrix[i+1][j].z+i)+i*20+400, data);
+			// else
+			// 	breshelper(j*30+400, (matrix[i][j].z+i)+i*20+400, j*30+401, (matrix[i][j].z+i)+i*20+400, data);
+			
+			//printf("reader x = %d, y = %d\n", frame->max_x, frame->max_y);
+			j++;
+		}
+		//printf("\n");
+		i++;
+	}
+	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
+	return (1);
 }

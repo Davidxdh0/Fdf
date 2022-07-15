@@ -1,19 +1,10 @@
-validate input
-parse input in list
-
--
--minilib window maken
--exit
--etc
-
-Godverdomme lijn tekenen :)
-alles free'en
-
 plan:
 argc + open
 check line op lengtes en getallen
 open file
+parse file
 fill alles in list - 2-3 structs
+
 mlx
 	init
 	mlx_new_window
@@ -22,8 +13,12 @@ mlx
 
 key = free - exit 
 	mlx_destroy_image
-	clear window
 
-pixel algoritme
-
+draw lines functie
+	my_mlx_pixel_put(data, ix, iy, 0x00FFFF00);
+	mlx_put_image_to_window(
 mlx hook en loop
+
+Vrijdag:
+Lijnen tekenen tussen punten
+Input hex?
