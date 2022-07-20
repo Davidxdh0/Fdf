@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:47:36 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/20 15:41:33 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/20 18:30:48 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,36 @@
 
 void    draw_dots(int colour, int x, int y, t_data *data)
 {
-    int i;
-    int j;
+    // int i;
+    // int j;
     int ix;
     int iy;
+    // int windowx;
+    // int windowy;
+    // int middelste;
+    // int onderstepunt;
+    
+    // windowy = WINDOW_Y/ (data->max_y*1.2);
+    // windowx = WINDOW_X/ (data->max_x*1.2);
+    // onderstepunt = 0 - 19;
+    // 0 = x+ymax - y;
+    //middelste = 0 = 0 - 19;
+    //5 - 2.5 = 2.5
+    // int middely = 510 = data->max_y/2
+    // printf("%d en %d", windowx, windowy);
     
     ix = x - y;
     iy = (x + y)/2;
-    i = (y-500)/20;
-    j = (x-1000)/20;
+    // i = (y-500)/20;
+    // j = (x-1000)/20;
     //printf("%d en %d\n", ix, iy);
+    //printf("x:%d y:%d\nix:%d iy:%d\n\n", x, y, ix, iy);
     if (colour == 0)
-        my_mlx_pixel_put(data, ix, iy, 0x00FF0000);
+        my_mlx_pixel_put(data, ix+data->max_y*67, iy, 0x00FF0000);
     else
-        my_mlx_pixel_put(data, ix, iy, 0x00FFFF00);
-    if (i < 10 && j < 18)
-		draw_ugly_line(ix, iy, data);
+        my_mlx_pixel_put(data, ix+data->max_y*67, iy, 0x00FFFF00);
+    // if (i < 10 && j < 18)
+	// 	draw_ugly_line(ix, iy, data);
     //printf("x = %d, y = %d\n", x, y);
     
 }
@@ -165,20 +179,20 @@ int draw(t_data *data)
 {
 	int i;
 	int j;
-	
+
 	i = 0;
-	while (i < 11)
+	while (i < data->max_y)
 	{
 		j = 0;
-		while (j < 19)
+		while (j < data->max_x)
 		{
 			//printf("%.0f ", (matrix[i][j].z));
 			//draw_dots(0, j*20+500, (matrix[i][j].z + i)+i*10 + 500, data);
 			
 			if ((data->matrix[i][j].z) > 5)
-				draw_dots(0, j*20+1000, i*20 + 500, data);
+				draw_dots(0, j, i, data);
 			else
-				draw_dots(1, j*20+1000, i*20 + 500, data);
+				draw_dots(1, j, i, data);
 			
 			// if (i + 1 < 11)
 			// 	breshelper(j*30+400, (matrix[i][j].z+i)+i*20+400, j*30+401, (matrix[i+1][j].z+i)+i*20+400, data);

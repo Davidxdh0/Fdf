@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 12:46:43 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/20 14:39:28 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/20 18:03:14 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 #include <stdio.h>
 #include <math.h>
 
-
+#define WINDOW_X		1920
+#define WINDOW_Y		1080
 typedef struct s_matrix
 {
 	float 	x;
