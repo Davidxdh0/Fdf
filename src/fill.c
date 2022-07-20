@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 12:35:31 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/15 18:19:39 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/20 14:50:18 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ t_matrix	**fill_matrix(int x, int y, char *file)
 			// matrix[x_i][y_i].x = y_i;
 			// matrix[x_i][y_i].y = x_i;
 			matrix[x_i][y_i].z = height(x_i, y_i, file);
-			matrix[x_i][y_i].colour = colour(x_i, y_i, file)[0];
-			//color?
+			matrix[x_i][y_i].colour = colour(x_i, file);
+			//printf("%d ", matrix[x_i][y_i].colour);
 			y_i++;
 		}
 		x_i++;
@@ -43,9 +43,9 @@ t_matrix	**fill_matrix(int x, int y, char *file)
 	return (matrix);
 }
 
-char	*colour(int x, int y, char *file)
+int	colour(int x, char *file)
 {
-		int fd;
+	int fd;
 	char **array;
 	int i;
 	int j;
@@ -55,27 +55,19 @@ char	*colour(int x, int y, char *file)
 	j = 0;
 	fd = open(file, O_RDONLY);
 	array = ft_split(get_next_line(fd), ' ');
-	//printf("x = %d, y = %d\n", x, y);
 	while(x > 0)
 	{
-		//printf("y = %d\n", y);
 		array = ft_split(get_next_line(fd), ' ');
 		x--;
 	}
-	colour = ft_strchr(array[y], ',');
+	colour = ft_strchr(array[0], ',');
+	if (colour && *colour)
+		colour++;
+	else
+		return (0);
 	close(fd);
-	return (colour);
+	return (ft_atoi_base(colour, "0123456789ABCDEF"));
 }
-// 	//printf("%s", array[0]);
-// 	// colour = ft_strchr(array[y], ',');
-// 	// if (!colour[1])
-// 	// 	return(0);
-// 	y++;
-// 	matrix[1][1].z = 1;
-// 	// printf("%c", colour[0]);
-// 	close(fd);
-// 	return (ft_atoi(array[y]));
-// }
 
 int	height(int x, int y, char *file)
 {
@@ -88,10 +80,8 @@ int	height(int x, int y, char *file)
 	j = 0;
 	fd = open(file, O_RDONLY);
 	array = ft_split(get_next_line(fd), ' ');
-	//printf("x = %d, y = %d\n", x, y);
 	while(x > 0)
 	{
-		//printf("y = %d\n", y);
 		array = ft_split(get_next_line(fd), ' ');
 		x--;
 	}

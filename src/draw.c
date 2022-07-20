@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:47:36 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/15 18:07:01 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/20 15:41:33 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,10 @@ void bresehamline(int x1, int y1, int x2, int y2, int dx, int dy, int decide, t_
     }
 }
 
+/* 
+Bereken vanaf waar ie getekend moet worden om lekker groot in beeld te komen
+Teken lijnen tussen punten met kleursverschil in 5 stappen (z waarde high en low)
+*/
 int draw(t_data *data)
 {
 	int i;

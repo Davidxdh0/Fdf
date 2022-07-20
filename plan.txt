@@ -1,10 +1,18 @@
-plan:
+DONE:
 argc + open
 check line op lengtes en getallen
 open file
 parse file
 fill alles in list - 2-3 structs
+Input kleur
+TODO:
+--------------------
+Lijnen tekenen tussen punten + kleur
 
+alles checken pre inleveren.
+alles kunnen uitleggen.
+
+--------------------------
 mlx
 	init
 	mlx_new_window
@@ -18,7 +26,3 @@ draw lines functie
 	my_mlx_pixel_put(data, ix, iy, 0x00FFFF00);
 	mlx_put_image_to_window(
 mlx hook en loop
-
-Vrijdag:
-Lijnen tekenen tussen punten
-Input hex?

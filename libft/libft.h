@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/10/26 15:50:48 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/01/24 16:51:11 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/20 12:38:24 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stddef.h>
 
 int		ft_atoi(const char *str);
+int     ft_atoi_base(char *str, char *base);
 void	ft_bzero(void *s, size_t n);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
