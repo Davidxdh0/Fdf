@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 12:35:31 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/25 10:40:34 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/25 15:33:18 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ t_matrix	**fill_matrix(int x, int y, char *file)
 		y_i = 0;
 		while (y_i < x)
 		{
+			matrix[x_i][y_i].x = 1;
+			matrix[x_i][y_i].y = 1;
 			matrix[x_i][y_i].z = height(x_i, y_i, file);
 			matrix[x_i][y_i].colour = colour(x_i, file);
 			//printf("%d ", matrix[x_i][y_i].colour);
@@ -98,9 +100,10 @@ void	printlist(t_matrix **matrix, int x, int y)
 		j = 0;
 		while(j < x)
 		{
-			//printf("%.0f ", matrix[i][j].x);
+			printf("%.0f ", matrix[i][j].x);
+			printf("%.0f ", matrix[i][j+1].x);
 			//printf("%.0f ", matrix[i][j].y);
-			printf("%.0f ", matrix[i][j].z);
+			//printf("%.0f ", matrix[i][j].z);
 			j++;
 		}
 		printf("\n");

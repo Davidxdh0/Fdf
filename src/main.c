@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/05 08:09:44 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/15 18:06:46 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/25 15:35:56 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char **argv)
 	reader(argc, argv[1], &data); //parser
 	create_window(&data);
 	draw(&data);
+	//printlist(data.matrix, data.max_x, data.max_y);
 	mlx_hook(data.win, 2, 1L<<0, keypress, &data);
 	mlx_loop(data.mlx);
 	return (0);

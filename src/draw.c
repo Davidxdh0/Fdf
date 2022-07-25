@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:47:36 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/25 14:33:12 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/25 15:41:10 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,16 +160,18 @@ void breshelper(int x, int y, t_data *data)
     // x2 = 125;
     // y1 = 110;
     // y2 = 120;
-    if (x + 1 >= data->max_x || y + 1 >= data->max_y)
-        return ;
-    printf("y= %d x = %d\n", y, x);
+    // if (y < 4 || y > 7 || x > 15)
+    //     return ;
+
     x1 = data->matrix[y][x].x;
     x2 = data->matrix[y][x+1].x;
     y1 = data->matrix[y][x].y;
-    y2 = data->matrix[y][x+1].y;
+    y2 = data->matrix[y][x + 1].y;
     dx = abs(x2 - x1);
     dy = abs(y2 - y1);
+   
     //If slope is less than one
+    printf("y =%d, x=%d y1= %d x1 = %d y2=%d x2=%d\n", y, x, y1, x1, y2, x2);
     if (dx > dy && x+1 < data->max_x)
     {
         //passing argument as 0 to plot(x,y)
@@ -244,10 +246,10 @@ int draw(t_data *data)
 	int j;
 
 	i = 0;
-	while (i < data->max_y-2)
+	while (i < data->max_y-1)
 	{
 		j = 0;
-		while (j < data->max_x-2)
+		while (j < data->max_x-1)
 		{
 			//printf("%.0f ", (matrix[i][j].z));
 			//draw_dots(0, j*20+500, (matrix[i][j].z + i)+i*10 + 500, data);
