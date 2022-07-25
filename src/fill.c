@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 12:35:31 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/20 14:50:18 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/25 10:40:34 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ t_matrix	**fill_matrix(int x, int y, char *file)
 		y_i = 0;
 		while (y_i < x)
 		{
-			// matrix[x_i][y_i].x = y_i;
-			// matrix[x_i][y_i].y = x_i;
 			matrix[x_i][y_i].z = height(x_i, y_i, file);
 			matrix[x_i][y_i].colour = colour(x_i, file);
 			//printf("%d ", matrix[x_i][y_i].colour);

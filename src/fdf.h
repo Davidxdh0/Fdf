@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 12:46:43 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/20 18:03:14 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/25 13:43:58 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@ int			colour(int y, char *file);
 //draw.c
 void 	DDA	(int x, int y, int x1, int y1, t_data *data);
 void	draw_dots(int colour, int x, int y, t_data *data);
-void 	breshelper(int x1, int y1, int x2, int y2, t_data *data);
+void 	breshelper(int x, int y, t_data *data);
 void 	bresehamline(int x1, int y1, int x2, int y2, int dx, int dy, int decide, t_data *data);
-void 	draw_ugly_line(int x, int y, t_data *data);
+void 	draw_ugly_line(t_data *data);
+void 	connect_dots(t_data *data);
 
 //exit.c
 void	free_arr(char **arg);
