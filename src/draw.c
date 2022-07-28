@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:47:36 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/25 15:41:10 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/26 13:44:41 by yeboa         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ void    draw_dots(int colour, int x, int y, t_data *data)
     float iy;
     int windowx;
     int windowy;
-    int offset;
+   // int offset;
 
     windowy = WINDOW_Y / ((data->max_x + data->max_y) / 2);
     windowx = WINDOW_X / ((data->max_x) * 1.6);
     // windowx = 2;
     // windowy = 2;
-    offset = -1 * data->max_y * windowx;
+    //offset = -1 * data->max_y * windowx;
     //printf("%d en %d ", windowx, windowy);
     
     ix = x - y;
@@ -114,12 +114,12 @@ void draw_ugly_line(t_data *data)
     int x;
     int y;
     int xsteps;
-    int newx;
+    //int newx;
     int newy;
   
     x = 0;
     y = 0;
-    newx = 0;
+    //newx = 0;
     newy = 0;
     while (y < data->max_y)
     {

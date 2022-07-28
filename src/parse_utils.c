@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 12:46:16 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/15 15:17:27 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/22 14:30:12 by yeboa         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,8 @@ void z_values(t_data *data)
 
 void	reader(int argc, char *file, t_data *data)
 {
-	int i;
 	int fd;
 
-	i = 0;
 	if (argc == 2)
 	{
 		if (!(fd = open(file, O_RDONLY)))

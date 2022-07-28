@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 12:35:31 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/25 15:33:18 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/26 13:43:48 by yeboa         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,9 @@ int	colour(int x, char *file)
 {
 	int fd;
 	char **array;
-	int i;
-	int j;
+
 	char *colour;
 
-	i = 0;
-	j = 0;
 	fd = open(file, O_RDONLY);
 	array = ft_split(get_next_line(fd), ' ');
 	while(x > 0)
@@ -73,11 +70,7 @@ int	height(int x, int y, char *file)
 {
 	int fd;
 	char **array;
-	int i;
-	int j;
 
-	i = 0;
-	j = 0;
 	fd = open(file, O_RDONLY);
 	array = ft_split(get_next_line(fd), ' ');
 	while(x > 0)

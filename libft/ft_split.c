@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/16 16:01:58 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/01/24 15:16:29 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/22 13:02:46 by yeboa         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,9 @@ static void	*my_free(char **str, int i)
 char	**ft_split(char const *s, char c)
 {
 	char	**str;
-	int		i;
 	int		j;
 	int		k;
 
-	i = 0;
 	j = 0;
 	if (!s)
 		return (NULL);
@@ -78,7 +76,7 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	while (k--)
 	{
-		while (*s == c && s != '\0')
+		while (*s == c && s != NULL)
 			s++;
 		str[j] = ft_substr((char *)s, 0, ft_strlenarray((char *)s, c));
 		if (!str[j])
