@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 12:35:31 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/26 13:43:48 by yeboa         ########   odam.nl         */
+/*   Updated: 2022/07/28 11:16:18 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void	printlist(t_matrix **matrix, int x, int y)
 		j = 0;
 		while(j < x)
 		{
-			printf("%.0f ", matrix[i][j].x);
-			printf("%.0f ", matrix[i][j+1].x);
+			printf("x=%.0f ", matrix[i][j].x);
+			printf("x+1=%.0f ", matrix[i][j+1].x);
 			//printf("%.0f ", matrix[i][j].y);
 			//printf("%.0f ", matrix[i][j].z);
 			j++;

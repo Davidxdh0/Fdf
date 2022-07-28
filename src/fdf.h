@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 12:46:43 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/25 15:39:04 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/07/28 13:14:08 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void		reader(int argc, char *file, t_data *data);
 int			main(int argc, char **argv);
 
 //parse_util.C
-void	max_numbers(char *file, t_data *data);
+void		max_numbers(char *file, t_data *data);
 int 		countx(char *file);
 int 		county(char *file);
 
@@ -55,7 +55,7 @@ int 		county(char *file);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int			keypress(int keycode, t_data *vars);
 void		create_window(t_data *data);
-int 		draw(t_data *data);
+
 
 //fill.c
 t_matrix	**fill_matrix(int x, int y, char *file);
@@ -66,10 +66,13 @@ int			colour(int y, char *file);
 //draw.c
 void 	DDA	(int x, int y, int x1, int y1, t_data *data);
 void	draw_dots(int colour, int x, int y, t_data *data);
-void 	breshelper(int x, int y, t_data *data);
+void 	breshelper(t_data *data);
 void 	bresehamline(int x1, int y1, int x2, int y2, int dx, int dy, int decide, t_data *data);
 void 	draw_ugly_line(t_data *data);
 void 	connect_dots(t_data *data);
+void 	connect_vert(t_data *data);
+int 	draws(t_data *data);
+int 	draw(t_data *data);
 
 //exit.c
 void	free_arr(char **arg);
