@@ -4,16 +4,19 @@ check line op lengtes en getallen
 open file
 parse file
 fill alles in list - 2-3 structs
+draaien
 Input kleur
+Lijnen tekenen tussen punten
 TODO:
 --------------------
-Lijnen tekenen tussen punten + kleur
+Hoe kleuren inrichten?
 
+ kleuren goed krijgen
 alles checken pre inleveren.
 alles kunnen uitleggen.
 
 --------------------------
-mlx
+mlxsds
 	init
 	mlx_new_window
 	mlx_new_image
@@ -26,3 +29,11 @@ draw lines functie
 	my_mlx_pixel_put(data, ix, iy, 0x00FFFF00);
 	mlx_put_image_to_window(
 mlx hook en loop
+
+73
+745
+359
+551
+322
+805
+455

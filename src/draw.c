@@ -6,76 +6,37 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:47:36 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/28 18:00:37 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/18 18:16:33 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// void DDA(int x, int y, int x1, int y1, t_data *data)
-// {
-//     //for (int i = 600; i <= 700; i++)
-//        // my_mlx_pixel_put(&data, i, i, 0x00FF0000+i);
-        
-//     // calculate dx & dy
-//     int dx = x1 - x;
-//     int dy = y1 - x;
-//     data.line_length++;
-//     // calculate steps required for generating pixels
-//     int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
-//     //printf("steps = %d\n", steps);
-//     // calculate increment in x & y for each steps
-//     float Xinc = dx / (float) steps;
-//     float Yinc = dy / (float) steps;
- 
-//     // Put pixel for each step
-//     float X = x;
-//     float Y = y;
-//     for (int i = 0; i <= steps; i++)
-//     {
-//         if (Y < 0)
-//             Y *= -1;
-//         //printf("X = %.0f Y = %.0f\n", X, Y);
-//         my_mlx_pixel_put(&data, X, Y, 0x00FF0000); //(round(X),round(Y),RED);   put pixel at (X,Y)
-//         X += Xinc;           // increment in x at each step
-//         Y += Yinc;           // increment in y at each step
-//     }
-// }
-
-void    draw_dots(int colour, int x, int y, t_data *data)
+void    draw_dots(int x, int y, t_data *data)
 {
     float ix;
     float iy;
     int windowx;
     int windowy;
-   // int offset;
-
-    windowy = WINDOW_Y / ((data->max_x + data->max_y) / 2);
-    windowx = WINDOW_X / ((data->max_x) * 2);
-    // windowx = 2;
-    // windowy = 2;
-    //offset = -1 * data->max_y * windowx;
-    //printf("%d en %d ", windowx, windowy);
+    float temp;
+    float tempy;
+    
     ix = x;
     iy = y;
-    
-    // ix = x - y;
-    // iy = (x + y)/2;
-    // matrix[x_i][y_i].x = (ix + data->max_y) * windowx;
-	// matrix[x_i][y_i].y = iy * windowy + 30;
-    // data->matrix[1][y].x = (ix + data->max_y) * windowx;
-    // data->matrix[1][y].y = iy * windowy + 30;
+    windowy = WINDOW_Y / ((data->max_x + data->max_y) / 2);
+    windowx = WINDOW_X / ((data->max_x) * 2);
     data->matrix[y][x].x = (ix + data->max_y) * windowx;
-    data->matrix[y][x].y = iy * windowy + 30;//+ data->matrix[y][x].z * 5;
-    // printf("%d %d x: %f en y: %f\n",x,y,data->matrix[y][x].x, data->matrix[y][x].y );
-    if (colour == 0)
-        my_mlx_pixel_put(data, data->matrix[y][x].x, data->matrix[y][x].y, 0x00FF0000);
-    else
-        my_mlx_pixel_put(data, data->matrix[y][x].x , data->matrix[y][x].y, 0x00FFFF00);
-    //printf("%.0f en %.0f\n",(ix + data->max_y)* windowx, (iy) * windowy + 30);
-	//draw_ugly_line(x, y, data);
-    //printf("x = %d, y = %d\n", x, y);
+    data->matrix[y][x].y = iy * windowy;
+    temp = data->matrix[y][x].x;
+    tempy = data->matrix[y][x].y;
+    data->matrix[y][x].x = (temp * cos(45)) - (tempy * sin(45));
+    data->matrix[y][x].y = (tempy * cos(45)) + ((temp * sin(45))) - data->matrix[y][x].z;
+    /*
+    data->matrix[y][x].x = (temp * cos(45)) - (tempy * sin(45)+1000);
+    data->matrix[y][x].y = (tempy * cos(45)) + ((temp * sin(45))/3) - data->matrix[y][x].z;
+    */
 }
+
 
 void connect_dots(t_data *data)
 {
@@ -84,7 +45,7 @@ void connect_dots(t_data *data)
     float m;
     float newx;
     float newy;
-    
+    float temp;
     m = 1;
     x = 0;
     y = 0;
@@ -93,20 +54,25 @@ void connect_dots(t_data *data)
 
     while (y < data->max_y)
     {
-        //xdiff = (data->matrix[y][x + 1].x - data->matrix[y][x].x) / 
         x = 0;
         while (x + 1 < data->max_x)
         {
             newx = data->matrix[y][x].x;
-            //printf("%.0f, %.0f, dit: %.0f %.0f\n", data->matrix[y][x + 1].y, data->matrix[y][x].y, data->matrix[y][x + 1].x, data->matrix[y][x].x);
+            temp = data->matrix[y][x+1].x - newx;
+            temp = 65535 / temp;
             m = (data->matrix[y][x + 1].y - data->matrix[y][x].y) / (data->matrix[y][x + 1].x - data->matrix[y][x].x);
-            //printf("%.2f", m);
             while (newx <= data->matrix[y][x + 1].x)
             {
-                newy = (m * (newx - data->matrix[y][x].x) + data->matrix[y][x].y);  
-                printf("newx %.2f %.2f\n", newx, newy);
-                my_mlx_pixel_put(data, newx, newy, 0x00FFAAAAA);
-                newx++;
+                newy = (m * (newx - data->matrix[y][x].x) + data->matrix[y][x].y);
+                if (data->matrix[y][x].z > data->max_z/2 && data->matrix[y][x+1].z > data->max_z/2)
+                    my_mlx_pixel_put(data, newx, newy, 0xFF0000);
+                else if (data->matrix[y][x+1].z > data->max_z/2 ) //|| data->matrix[y][x-1].z > data->max_z/2 )
+                    my_mlx_pixel_put(data, newx, newy, (0xffffff - (newx - data->matrix[y][x].x) *temp ));
+                else if (data->matrix[y][x+1].z < data->max_z/2 && data->matrix[y][x].z > data->max_z/2 ) //|| data->matrix[y][x-1].z > data->max_z/2 )
+                    my_mlx_pixel_put(data, newx, newy, (0xff0000) + (newx - data->matrix[y][x].x) *temp);
+                else
+                    my_mlx_pixel_put(data, newx, newy, 0xFFFFFF);
+                newx = newx + 0.1;
             }
             x++;
         }
@@ -121,7 +87,7 @@ void connect_vert(t_data *data)
     float m;
     float newx;
     float newy;
-    
+    float temp;
     m = 1;
     x = 0;
     y = 0;
@@ -130,20 +96,25 @@ void connect_vert(t_data *data)
 
     while (y + 1 < data->max_y)
     {
-        //xdiff = (data->matrix[y][x + 1].x - data->matrix[y][x].x) / 
         x = 0;
         while (x < data->max_x)
         {
             newx = data->matrix[y][x].x;
-            //printf("%.0f, %.0f, dit: %.0f %.0f\n", data->matrix[y][x + 1].y, data->matrix[y][x].y, data->matrix[y][x + 1].x, data->matrix[y][x].x);
+            temp = data->matrix[y+1][x].x - newx;
+            temp = 65535 / temp;
             m = (data->matrix[y+1][x].y - data->matrix[y][x].y) / (data->matrix[y+1][x].x - data->matrix[y][x].x);
-            //printf("%.2f", m);
             while (newx >= data->matrix[y+1][x].x)
             {
                 newy = (m * (newx - data->matrix[y][x].x) + data->matrix[y][x].y);  
-                printf("newx %.2f %.2f\n", newx, newy);
-                my_mlx_pixel_put(data, newx, newy, 0x00FFAAAAA);
-                newx--;
+                if (data->matrix[y][x].z > data->max_z/2 && data->matrix[y+1][x].z > data->max_z/2)
+                    my_mlx_pixel_put(data, newx, newy, 0xFF0000);
+                else if (data->matrix[y + 1][x].z > data->max_z/2 )
+                    my_mlx_pixel_put(data, newx, newy, (0xffffff - (newx - data->matrix[y][x].x) *temp ));
+                else if (data->matrix[y+1][x].z < data->max_z/2 && data->matrix[y][x].z > data->max_z/2 ) //|| data->matrix[y][x-1].z > data->max_z/2 )
+                    my_mlx_pixel_put(data, newx, newy, (0xff0000) + (newx - data->matrix[y][x].x) *temp);
+                else
+                    my_mlx_pixel_put(data, newx, newy, 0xFFFFFF);
+                newx = newx - 0.1;
             }
             x++;
         }
@@ -157,12 +128,10 @@ void draw_ugly_line(t_data *data)
     int x;
     int y;
     int xsteps;
-    //int newx;
     int newy;
   
     x = 0;
     y = 0;
-    //newx = 0;
     newy = 0;
     while (y < data->max_y)
     {
@@ -174,7 +143,7 @@ void draw_ugly_line(t_data *data)
             {
                 slope = (data->matrix[y][x + 1].y - data->matrix[y][x].y)/(data->matrix[y][x+1].x - data->matrix[y][x].x);
                 newy = data->matrix[y][x].y + slope * xsteps;
-                printf("slope = %f y=%d x=%d %f en %f en xs:%d nwy:%d\n", slope, y, x, data->matrix[y][x + 1].y - data->matrix[y][x].y, data->matrix[y][x+1].x - data->matrix[y][x].x, xsteps, newy);
+                //printf("slope = %f y=%d x=%d %f en %f en xs:%d nwy:%d\n", slope, y, x, data->matrix[y][x + 1].y - data->matrix[y][x].y, data->matrix[y][x+1].x - data->matrix[y][x].x, xsteps, newy);
                 // printf("y = %d, y2 = %f\n", y, y2);
                 // printf("x = %d, x2 = %f\n", x, x2);
                 // if (x2 - x == 2)
@@ -207,34 +176,17 @@ void breshelper(t_data *data)
         {
             if (x + 1 == data->max_x)
                 break ;
-            // x++;
-            // y++;
-            // x1 = 100;
-            // x2 = 125;
-            // y1 = 110;
-            // y2 = 120;
-            // if (p == x + 1)
-            //     printf("x=%d p=%d\n", x, p);
             x1 = data->matrix[y][x].x;
             y1 = data->matrix[y][x].y;
             x2 = data->matrix[y][x + 1].x;
             y2 = data->matrix[y][x + 1].y;
             dx = abs(x2 - x1);
             dy = abs(y2 - y1);
-            //printlist(atrix, x, y);
-            //If slope is less than one
-            //printf("y =%d, x=%d y1= %d x1 = %d y2=%d x2=%d\n", y, x, y1, x1, y2, x2);
             if (dx > dy && x+1 < data->max_x)
-            {
-                //passing argument as 0 to plot(x,y)
                 bresehamline(x1,x2,y1,y2,dx, dy, 0, data);
-            }
             //if slope is greater than or equal to 1
             else if ( y+1 < data->max_y)
-            {
-                //passing argument as 1 to plot (y,x)
                 bresehamline(y1,y2,x1,x2,dy, dx, 1, data);
-            }
             x++;
         }
         y++;
@@ -286,6 +238,14 @@ void bresehamline(int x1, int x2, int y1, int y2, int dx, int dy, int decide, t_
         i++;
     }
 }
+//huidig & x volgende, huidig & x vorige, 
+// int colourgradient(int x, int y, t_data *data)
+// {
+//     int colour;
+
+//     data->matrix[x][y].colour]
+    
+// }
 
 /* 
 Bereken vanaf waar ie getekend moet worden om lekker groot in beeld te komen
@@ -306,9 +266,9 @@ int draws(t_data *data)
 			//draw_dots(0, j*20+500, (matrix[i][j].z + i)+i*10 + 500, data);
 			
 			if ((data->matrix[i][j].z) > 5)
-				draw_dots(0, j, i, data);
+				draw_dots(j, i, data);
 			else
-				draw_dots(1, j, i, data);
+				draw_dots(j, i, data);
 			// if (i + 1 < 11)
 			// 	breshelper(j*30+400, (matrix[i][j].z+i)+i*20+400, j*30+401, (matrix[i+1][j].z+i)+i*20+400, data);
 			// else
@@ -320,10 +280,6 @@ int draws(t_data *data)
 		//printf("\n");
 		i++;
 	}
-    //draw_ugly_line(data);
-    
-   // connect_dots(data);
-    
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (1);
 }
@@ -332,8 +288,8 @@ int draw(t_data *data)
 {
     draws(data); //fill data
     //draw_ugly_line(data);
-    //connect_dots(data);
-    //connect_vert(data);
+    connect_dots(data);
+    connect_vert(data);
     //breshelper(data); //-> bresenhamline
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (1);

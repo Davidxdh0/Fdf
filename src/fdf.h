@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 12:46:43 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/28 13:14:08 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/18 18:04:53 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,18 @@ void		create_window(t_data *data);
 t_matrix	**fill_matrix(int x, int y, char *file);
 int			height(int x, int y, char *file);
 void		printlist(t_matrix **matrix, int x, int y);
-int			colour(int y, char *file);
+int			colour(int y, int x, char *file);
 
 //draw.c
 void 	DDA	(int x, int y, int x1, int y1, t_data *data);
-void	draw_dots(int colour, int x, int y, t_data *data);
+void	draw_dots(int x, int y, t_data *data);
 void 	breshelper(t_data *data);
 void 	bresehamline(int x1, int y1, int x2, int y2, int dx, int dy, int decide, t_data *data);
 void 	draw_ugly_line(t_data *data);
 void 	connect_dots(t_data *data);
 void 	connect_vert(t_data *data);
+void 	connect_new_dots(int x, float tempnewy, float newy, int colour, t_data *data);
+int 	colourgradient(int x, int y, t_data *data);
 int 	draws(t_data *data);
 int 	draw(t_data *data);
 

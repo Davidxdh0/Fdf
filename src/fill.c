@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 12:35:31 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/28 11:16:18 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/18 12:57:36 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ t_matrix	**fill_matrix(int x, int y, char *file)
 			matrix[x_i][y_i].x = 1;
 			matrix[x_i][y_i].y = 1;
 			matrix[x_i][y_i].z = height(x_i, y_i, file);
-			matrix[x_i][y_i].colour = colour(x_i, file);
-			//printf("%d ", matrix[x_i][y_i].colour);
+			matrix[x_i][y_i].colour = colour(x_i, y_i, file);
+			//printf("%d \n", matrix[x_i][y_i].colour);
+			
 			y_i++;
 		}
 		x_i++;
@@ -43,13 +44,12 @@ t_matrix	**fill_matrix(int x, int y, char *file)
 	return (matrix);
 }
 
-int	colour(int x, char *file)
+int	colour(int x, int y, char *file)
 {
 	int fd;
 	char **array;
-
 	char *colour;
-
+	
 	fd = open(file, O_RDONLY);
 	array = ft_split(get_next_line(fd), ' ');
 	while(x > 0)
@@ -57,7 +57,7 @@ int	colour(int x, char *file)
 		array = ft_split(get_next_line(fd), ' ');
 		x--;
 	}
-	colour = ft_strchr(array[0], ',');
+	colour = ft_strchr(array[y], ',');
 	if (colour && *colour)
 		colour++;
 	else
@@ -94,9 +94,9 @@ void	printlist(t_matrix **matrix, int x, int y)
 		while(j < x)
 		{
 			printf("x=%.0f ", matrix[i][j].x);
-			printf("x+1=%.0f ", matrix[i][j+1].x);
-			//printf("%.0f ", matrix[i][j].y);
-			//printf("%.0f ", matrix[i][j].z);
+			//printf("x+1=%.0f ", matrix[i][j+1].x);
+			printf("%.0f ", matrix[i][j].y);
+			printf("%.0f ", matrix[i][j].z);
 			j++;
 		}
 		printf("\n");
