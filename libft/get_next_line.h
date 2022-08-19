@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/10/06 14:49:17 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/06/15 10:25:41 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/19 15:04:10 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <unistd.h>
 # include "libft.h"
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 2
+#  define BUFFER_SIZE 1024
 # endif
 
 // get_next_line.c

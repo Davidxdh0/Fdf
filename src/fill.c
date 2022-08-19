@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 12:35:31 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/18 12:57:36 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/19 15:14:07 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,53 +32,90 @@ t_matrix	**fill_matrix(int x, int y, char *file)
 		{
 			matrix[x_i][y_i].x = 1;
 			matrix[x_i][y_i].y = 1;
-			matrix[x_i][y_i].z = height(x_i, y_i, file);
-			matrix[x_i][y_i].colour = colour(x_i, y_i, file);
-			//printf("%d \n", matrix[x_i][y_i].colour);
 			
+			// matrix[x_i][y_i].colour = colour(x_i, y_i, file);
 			y_i++;
 		}
 		x_i++;
 	}
+	matrix[x_i][y_i].z = height(x_i, y_i, file);
 	//printlist(matrix, x, y);
 	return (matrix);
 }
 
-int	colour(int x, int y, char *file)
-{
-	int fd;
-	char **array;
-	char *colour;
+// int	colour(int x, int y, char *file)
+// {
+// 	int fd;
+// 	char **array;
+// 	char *colour;
 	
-	fd = open(file, O_RDONLY);
-	array = ft_split(get_next_line(fd), ' ');
-	while(x > 0)
-	{
-		array = ft_split(get_next_line(fd), ' ');
-		x--;
-	}
-	colour = ft_strchr(array[y], ',');
-	if (colour && *colour)
-		colour++;
-	else
-		return (0);
-	close(fd);
-	return (ft_atoi_base(colour, "0123456789ABCDEF"));
-}
+// 	fd = open(file, O_RDONLY);
+// 	array = ft_split(get_next_line(fd), ' ');
+// 	while(x > 0)
+// 	{
+// 		array = ft_split(get_next_line(fd), ' ');
+// 		x--;
+// 	}
+// 	colour = ft_strchr(array[y], ',');
+// 	if (colour && *colour)
+// 		colour++;
+// 	else
+// 		return (0);
+// 	close(fd);
+// 	return (ft_atoi_base(colour, "0123456789ABCDEF"));
+// }
+
+// int	height(int x, int y, char *file)
+// {
+// 	int fd;
+// 	char **array;
+
+// 	fd = open(file, O_RDONLY);
+// 	array = ft_split(get_next_line(fd), ' ');
+// 	while(x > 0)
+// 	{
+// 		array = ft_split(get_next_line(fd), ' ');
+// 		x--;
+// 	}
+// 	close(fd);
+// 	return (ft_atoi(array[y]));
+// }
 
 int	height(int x, int y, char *file)
 {
 	int fd;
 	char **array;
+	char	*text;
+	char		*line;
+	ssize_t		i;
 
 	fd = open(file, O_RDONLY);
-	array = ft_split(get_next_line(fd), ' ');
+	if (fd == -1 || BUFFER_SIZE < 1)
+		return (0);
+	line = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!line)
+        return (0);
+	i = 1;
+	while ((i != 0))
+	{	
+		i = read(fd, line, BUFFER_SIZE);
+		if (i == -1)
+		{
+			free(line);
+			return (0);
+		}
+		line[i] = '\0';
+		text = ft_strjoin(text, line);
+	}
+	//printf("%s", text);
+	array = ft_split(text, ' ');
 	while(x > 0)
 	{
-		array = ft_split(get_next_line(fd), ' ');
+		array = ft_split(text, ' ');
 		x--;
 	}
 	close(fd);
+	printf("%s", array[y]);
 	return (ft_atoi(array[y]));
 }
 

@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 12:46:43 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/18 18:04:53 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/19 15:04:17 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <math.h>
+#include <time.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
 
 #define WINDOW_X		1920
 #define WINDOW_Y		1080
@@ -39,6 +43,10 @@ typedef struct	s_data {
 	int 		max_y;
 	float 		max_z;
 	float		min_z;
+	float		height;
+	float		low;
+	float		width;
+	float		widtht;
 	t_matrix	**matrix;
 }				t_data;
 
@@ -75,6 +83,7 @@ void 	connect_new_dots(int x, float tempnewy, float newy, int colour, t_data *da
 int 	colourgradient(int x, int y, t_data *data);
 int 	draws(t_data *data);
 int 	draw(t_data *data);
+void 	center_dots(t_data *data);
 
 //exit.c
 void	free_arr(char **arg);

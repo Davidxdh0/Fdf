@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   draw.c                                             :+:    :+:            */
+/*   draw3.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:47:36 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/19 12:25:24 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/19 11:25:15 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,47 +30,52 @@ void    draw_dots(int x, int y, t_data *data)
     temp = data->matrix[y][x].x;
     tempy = data->matrix[y][x].y;
     data->matrix[y][x].x = (temp * cos(45)) - (tempy * sin(45));
-    data->matrix[y][x].y = (tempy * cos(45)) + ((temp * sin(45))/2) - data->matrix[y][x].z * 5;
-    if (data->width > data->matrix[y][x].x)
-        data->width = data->matrix[y][x].x;
-    if (data->widtht < data->matrix[y][x].x)
-        data->widtht = data->matrix[y][x].x;
-    if (data->matrix[y][x].y < data->height)
-        data->height = data->matrix[y][x].y;
-    if (data->matrix[y][x].y > data->low)
-        data->low = data->matrix[y][x].y;     
+    data->matrix[y][x].y = (tempy * cos(45)) + ((temp * sin(45))) - data->matrix[y][x].z * 3;
+    // if (data->width > data->matrix[y][x].x)
+    //     data->width = data->matrix[y][x].x;
+    // // if (data->width2 < data->matrix[y][x].x)
+    // //     data->width2 = data->matrix[y][x].x;
+    // if (data->matrix[y][x].y < data->height)
+    //             data->height = data->matrix[y][x].y;
+    // if (data->matrix[y][x].y > data->low)
+    // {
+    //     printf("draw = %1.f en %1.f\n", data->low, data->matrix[y][x].y);
+    //     data->low = data->matrix[y][x].y; 
+    // }   
+    printf("%1.f en %1.f\n", data->low, data->matrix[y][x].y);      
+    //printf("%1.f", data->matrix[y][x].x);
     /*
     data->matrix[y][x].x = (temp * cos(45)) - (tempy * sin(45)+1000);
     data->matrix[y][x].y = (tempy * cos(45)) + ((temp * sin(45))/3) - data->matrix[y][x].z;
     */
 }
 
-void center_dots(t_data *data)
-{
-    int i;
-    int j;
+// void center_dots(t_data *data)
+// {
+//     int i;
+//     int j;
 
-    i = 0;
-    while (i < data->max_y)
-    {
-        j = 0;
-        while(j < data->max_x)
-        {
-            if (data->width < 0)
-                data->matrix[i][j].x += -1*data->width + 10;
-            if (data->widtht > 1900)
-                data->matrix[i][j].x /= 5;
-            if (data->height < 0)
-                data->matrix[i][j].y += data->height *-1 + 5;
+//     i = 0;
+//     while (i < data->max_y)
+//     {
+//         j = 0;
+//         while(j < data->max_x)
+//         {
+//             if (data->width < 0)
+//                 data->matrix[i][j].x += -1*data->width + 10;
+//             if (data->widtht > 1920)
+//                 data->widtht /= data->widtht/1920;
+//             if (data->height < 0 && data->low + -1* data->height <= 1919)
+//                 data->matrix[i][j].y += data->height *-1;
             
-            if (data->low > 1000 || data->max_z > 30 )//&& data->height + (data->low -1919) > 0)
-                data->matrix[i][j].y /= (data->low/1000);
-            j++;
-        }
-        i++;
-    }
-    //printf("low = %1.f", data->low);
-}
+//             if (data->low > 1000 )//&& data->height + (data->low -1919) > 0)
+//                 data->matrix[i][j].y /= (data->low/1000);
+//             j++;
+//         }
+//         i++;
+//     }
+//     printf("low = %1.f", data->low);
+// }
 
 
 void connect_dots(t_data *data)
@@ -168,7 +173,7 @@ int draws(t_data *data)
 
 	i = 0;
     data->width = 1;
-    data->widtht = 1900;
+    data->widtht = 1920;
     data->height = 1;
     data->low = 1000;   
 	while (i < data->max_y)
@@ -197,15 +202,11 @@ int draws(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (1);
 }
-void test(void)
-{
-    system("leaks -q fdf");
-}
+
 int draw(t_data *data)
 {
-    //atexit(test);
     draws(data); //fill data
-    center_dots(data);
+    //center_dots(data);
     //draw_ugly_line(data);
     connect_dots(data);
     connect_vert(data);
