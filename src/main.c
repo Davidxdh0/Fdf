@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/05 08:09:44 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/22 16:23:25 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/22 17:45:04 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void test(void)
 {
-    system("leaks -q fdf");
+	system("leaks -q fdf");
 }
 int	main(int argc, char **argv)
 {
@@ -48,6 +48,6 @@ int	main(int argc, char **argv)
    	t = clock() - t;
     time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
     printf("mlx %f seconds \n", time_taken);
-	
+	exit(0);
 	return (0);
 }

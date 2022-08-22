@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 12:46:43 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/22 16:08:07 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/22 18:10:45 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void		create_window(t_data *data);
 
 //fill.c
 t_matrix	**fill_matrix(int x, int y, char *file);
-int			height(int x, int y, char *file, t_matrix **matrix);
+void		height(int x, int y, char *file, t_matrix **matrix);
 void		printlist(t_matrix **matrix, int x, int y);
 int			colour(int y, int x, char *file);
 

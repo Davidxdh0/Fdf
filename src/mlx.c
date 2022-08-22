@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:24:42 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/20 18:03:37 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/22 16:26:57 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ void	create_window(t_data *data)
 	data->win = mlx_new_window(data->mlx, WINDOW_X, WINDOW_Y, "Hello Fdf!");
 	data->img = mlx_new_image(data->mlx, WINDOW_X, WINDOW_Y);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->line_length,
-								&data->endian); //bpp, ll en endian
+								&data->endian);
 								
 }

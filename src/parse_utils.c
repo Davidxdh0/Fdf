@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 12:46:16 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/22 16:06:01 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/22 17:59:41 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,29 @@ void max_numbers(char *file, t_data *data)
 {
 	int fd;
 	int ymax;
+	int i;
 	char *read_code;
 	char **line;
-	int i;
+	
 
 	i = 0;
 	ymax = 0;
 	fd = open(file, O_RDONLY);
 	read_code = get_next_line(fd);
+	if (!read_code)
+		return ;
 	line = ft_split(read_code, ' ');
-	while(line[i])
+	free(read_code);
+	while(line[i] && line)
 		i++;
-
-	while (read_code != 0 && ymax++ >= -200)
+	while (read_code != 0 && ymax++ >= 0)
 	{
 		read_code = get_next_line(fd);
+		free(read_code);
 	}
 	data->max_x = i;
 	data->max_y = ymax;
 	free_arr(line);
-	free(read_code);
 	close(fd);
 }
 
@@ -60,7 +63,6 @@ void z_values(t_data *data)
 		}
 		x++;
 	}
-	//printf("%d, %d", data->min_z, data->max_z);
 }
 
 void	reader(int argc, char *file, t_data *data)
@@ -82,7 +84,6 @@ void	reader(int argc, char *file, t_data *data)
 		t = clock() - t;
 		time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
 		printf("maxnumbers %f seconds \n", time_taken);
-		
 		printf("max x = %d\n", data->max_x);
 		t = clock();
 		data->matrix = fill_matrix(data->max_x, data->max_y, file);

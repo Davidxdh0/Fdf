@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:47:36 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/22 16:23:36 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/22 17:21:35 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ void center_dots(t_data *data)
             //     data->matrix[i][j].z *= 2;
             if (data->low > 1000 || data->max_z > 30 )//&& data->height + (data->low -1919) > 0)
                 data->matrix[i][j].y /= (data->low/1000);
-            // if (data->max_x > 400|| data->max_z > 30 )//&& data->height + (data->low -1919) > 0)
-            //     data->matrix[i][j].y /= 1.5;
+            if (data->max_x == 200|| data->max_z > 30 )//&& data->height + (data->low -1919) > 0)
+                data->matrix[i][j].y /= 1.4;
+            // printf("x = %d", data->max_x);
             // if (data->max_y > 400)  
             //     data->matrix[i][j].y /= 5;
             j++;

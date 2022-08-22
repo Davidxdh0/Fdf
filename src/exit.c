@@ -17,8 +17,8 @@ void	free_arr(char **arg)
 	int	i;
 
 	i = 0;
-	if (!arg)
-		return ;
+	// if (!arg)
+	// 	return ;
 	while (arg[i])
 		free(arg[i++]);
 	free(arg);
@@ -42,5 +42,6 @@ void	free_mlx(t_data *data)
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_window(data->mlx, data->win);
 	free_map(data);
+	//free(data);
 	exit(0);
 }
