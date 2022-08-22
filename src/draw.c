@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:47:36 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/19 12:25:24 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/22 16:23:36 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,6 @@ void    draw_dots(int x, int y, t_data *data)
         data->height = data->matrix[y][x].y;
     if (data->matrix[y][x].y > data->low)
         data->low = data->matrix[y][x].y;     
-    /*
-    data->matrix[y][x].x = (temp * cos(45)) - (tempy * sin(45)+1000);
-    data->matrix[y][x].y = (tempy * cos(45)) + ((temp * sin(45))/3) - data->matrix[y][x].z;
-    */
 }
 
 void center_dots(t_data *data)
@@ -62,16 +58,20 @@ void center_dots(t_data *data)
                 data->matrix[i][j].x /= 5;
             if (data->height < 0)
                 data->matrix[i][j].y += data->height *-1 + 5;
-            
+            // if (((data->max_z > -10 && data->max_z < 10)) && (data->max_x < 50 && data->max_y < 50))
+            //     data->matrix[i][j].z *= 2;
             if (data->low > 1000 || data->max_z > 30 )//&& data->height + (data->low -1919) > 0)
                 data->matrix[i][j].y /= (data->low/1000);
+            // if (data->max_x > 400|| data->max_z > 30 )//&& data->height + (data->low -1919) > 0)
+            //     data->matrix[i][j].y /= 1.5;
+            // if (data->max_y > 400)  
+            //     data->matrix[i][j].y /= 5;
             j++;
         }
         i++;
     }
     //printf("low = %1.f", data->low);
 }
-
 
 void connect_dots(t_data *data)
 {
@@ -86,7 +86,6 @@ void connect_dots(t_data *data)
     y = 0;
     newx = 0;
     newy = 0;
-
     while (y < data->max_y)
     {
         x = 0;
@@ -107,7 +106,10 @@ void connect_dots(t_data *data)
                     my_mlx_pixel_put(data, newx, newy, (0xff0000) + (newx - data->matrix[y][x].x) *temp);
                 else
                     my_mlx_pixel_put(data, newx, newy, 0xFFFFFF);
-                newx = newx + 0.1;
+                if (data->max_x > 400)
+                    newx = newx + 0.001;
+                else
+                    newx += 0.01;
             }
             x++;
         }
@@ -176,40 +178,24 @@ int draws(t_data *data)
 		j = 0;
 		while (j < data->max_x)
 		{
-			//printf("%.0f ", (matrix[i][j].z));
-			//draw_dots(0, j*20+500, (matrix[i][j].z + i)+i*10 + 500, data);
-			
 			if ((data->matrix[i][j].z) > 5)
 				draw_dots(j, i, data);
 			else
 				draw_dots(j, i, data);
-			// if (i + 1 < 11)
-			// 	breshelper(j*30+400, (matrix[i][j].z+i)+i*20+400, j*30+401, (matrix[i+1][j].z+i)+i*20+400, data);
-			// else
-			// 	breshelper(j*30+400, (matrix[i][j].z+i)+i*20+400, j*30+401, (matrix[i][j].z+i)+i*20+400, data);
-			
-			//printf("reader x = %d, y = %d\n", frame->max_x, frame->max_y);
 			j++;
 		}
-		//printf("\n");
 		i++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (1);
 }
-void test(void)
-{
-    system("leaks -q fdf");
-}
+
 int draw(t_data *data)
 {
-    //atexit(test);
     draws(data); //fill data
     center_dots(data);
-    //draw_ugly_line(data);
     connect_dots(data);
     connect_vert(data);
-    //breshelper(data); //-> bresenhamline
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (1);
 }
