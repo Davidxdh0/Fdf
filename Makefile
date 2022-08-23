@@ -6,7 +6,7 @@
 #    By: dyeboa <dyeboa@student.codam.nl>             +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/26 14:06:32 by dyeboa        #+#    #+#                  #
-#    Updated: 2022/08/22 17:22:10 by dyeboa        ########   odam.nl          #
+#    Updated: 2022/08/23 12:11:11 by dyeboa        ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC_FILES 	=	main.c \
 				fill.c \
 				mlx.c \
 				draw.c \
+				draw_util.c \
 				exit.c
 
 # object files

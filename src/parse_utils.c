@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 12:46:16 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/23 09:56:54 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/23 13:24:20 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,11 @@ void	reader(int argc, char *file, t_data *data)
 	if (argc == 2)
 	{
 		fd = open(file, O_RDONLY);
-		if (fd == -1 || !fd)
+		if (fd < 0 || !fd)
 		{	
-			printf("No file %s\n", file);
+			write(1, "No file ", 8);
+			write(1, file, ft_strlen(file));
+			write(1, "\n", 2);
 			exit(0);
 		}
 		max_numbers(file, data);
@@ -84,6 +86,11 @@ void	reader(int argc, char *file, t_data *data)
 		z_values(data);
 	}
 	else
-		exit(1);
+	{	
+		write(1, "No file ", 8);
+		write(1, file, ft_strlen(file));
+		write(1, "\n", 2);
+		exit(0);
+	}
 	close(fd);
 }
