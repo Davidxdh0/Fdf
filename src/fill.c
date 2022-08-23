@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 12:35:31 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/22 18:11:04 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/23 09:53:41 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,22 @@ t_matrix	**fill_matrix(int x, int y, char *file)
 
 void	height(int x, int y, char *file, t_matrix **matrix)
 {
-	int fd;
-	char **array;
-	char *temp;
-	int i;
-	int j;
-	
+	int		fd;
+	char	**array;
+	char	*temp;
+	int		i;
+	int		j;
+
 	i = 0;
 	fd = open(file, O_RDONLY);
-	while(i < y && fd != 0)
+	while (i < y && fd != 0)
 	{
 		j = 0;
 		temp = get_next_line(fd);
 		if (temp)
 			array = ft_split(temp, ' ');
 		free(temp);
-		while(j < x && array)
+		while (j < x && array)
 		{
 			matrix[i][j].z = ft_atoi(array[j]);
 			free(array[j]);

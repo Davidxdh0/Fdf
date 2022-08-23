@@ -22,28 +22,28 @@ echo elem
 ./fdf test_maps/elem.fdf
 echo julia
 ./fdf test_maps/julia.fdf
-# echo plat
-# ./fdf test_maps/plat.fdf
-# echo pyra
-# ./fdf test_maps/pyra.fdf
-# echo t2
-# ./fdf test_maps/t2.fdf
-# echo 10-70
-# ./fdf test_maps/10-70.fdf
-# echo 50-4
-# ./fdf test_maps/50-4.fdf
-# echo elem2
-# ./fdf test_maps/elem2.fdf
-# echo elem-fract
-# ./fdf test_maps/elem-fract.fdf
-# echo mars
-# ./fdf test_maps/mars.fdf
-# echo pnp_flat
-# ./fdf test_maps/pnp_flat.fdf
-# echo pyramide
-# ./fdf test_maps/pyramide.fdf
-# echo valgrind
-# valgrind ./fdf test_maps/pyramide.fdf
+echo plat
+./fdf test_maps/plat.fdf
+echo pyra
+./fdf test_maps/pyra.fdf
+echo t2
+./fdf test_maps/t2.fdf
+echo 10-70
+./fdf test_maps/10-70.fdf
+echo 50-4
+./fdf test_maps/50-4.fdf
+echo elem2
+./fdf test_maps/elem2.fdf
+echo elem-fract
+./fdf test_maps/elem-fract.fdf
+echo mars
+./fdf test_maps/mars.fdf
+echo pnp_flat
+./fdf test_maps/pnp_flat.fdf
+echo pyramide
+./fdf test_maps/pyramide.fdf
+echo valgrind
+valgrind ./fdf test_maps/pyramide.fdf
 # echo valgrind Wrong file
 # valgrind ./fdf te
 # echo valgrind Wrong number of args

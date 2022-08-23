@@ -6,20 +6,19 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 12:46:16 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/22 17:59:41 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/23 09:56:54 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void max_numbers(char *file, t_data *data)
+void	max_numbers(char *file, t_data *data)
 {
-	int fd;
-	int ymax;
-	int i;
-	char *read_code;
-	char **line;
-	
+	int		fd;
+	int		ymax;
+	int		i;
+	char	*read_code;
+	char	**line;
 
 	i = 0;
 	ymax = 0;
@@ -29,7 +28,7 @@ void max_numbers(char *file, t_data *data)
 		return ;
 	line = ft_split(read_code, ' ');
 	free(read_code);
-	while(line[i] && line)
+	while (line[i] && line)
 		i++;
 	while (read_code != 0 && ymax++ >= 0)
 	{
@@ -42,23 +41,26 @@ void max_numbers(char *file, t_data *data)
 	close(fd);
 }
 
-void z_values(t_data *data)
+void	z_values(t_data *data)
 {
-	int x;
-	int y;
-	
+	int	x;
+	int	y;
+
 	x = 1;
 	data->max_z = 0;
 	data->min_z = 0;
 	while (x < data->max_y)
 	{
 		y = 1;
-		while(y < data->max_x)
+		while (y < data->max_x)
 		{
 			if (data->max_z < data->matrix[x][y].z)
 				data->max_z = data->matrix[x][y].z;
 			if (data->min_z > data->matrix[x][y].z)
 				data->min_z = data->matrix[x][y].z;
+			if (((data->max_z > -11 && data->max_z < 11)) && (data->max_x < 50 \
+				&& data->max_y < 50) && data->max_y != 11)
+				data->matrix[x][y].z *= 10;
 			y++;
 		}
 		x++;
@@ -67,30 +69,18 @@ void z_values(t_data *data)
 
 void	reader(int argc, char *file, t_data *data)
 {
-	int fd;
-	clock_t t;
-	double time_taken;
-	
+	int	fd;
 
 	if (argc == 2)
 	{
-		if (!(fd = open(file, O_RDONLY)))
+		fd = open(file, O_RDONLY);
+		if (fd == -1 || !fd)
 		{	
-			printf("reader, fd onder 0 + close fd");
+			printf("No file %s\n", file);
 			exit(0);
 		}
-		t = clock();
 		max_numbers(file, data);
-		t = clock() - t;
-		time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
-		printf("maxnumbers %f seconds \n", time_taken);
-		printf("max x = %d\n", data->max_x);
-		t = clock();
 		data->matrix = fill_matrix(data->max_x, data->max_y, file);
-		t = clock() - t;
-		time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
-		printf("filledmatrix %f seconds \n", time_taken);
-		
 		z_values(data);
 	}
 	else

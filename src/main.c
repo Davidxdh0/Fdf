@@ -6,48 +6,26 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/05 08:09:44 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/22 17:45:04 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/23 09:54:46 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void test(void)
-{
-	system("leaks -q fdf");
-}
+// void test(void)
+// {
+// 	system("leaks -q fdf");
+// }
+//atexit(test);
 int	main(int argc, char **argv)
 {
-	atexit(test);
-	t_data		data;
-	clock_t t;
-	double time_taken;
-	t = clock();
-	reader(argc, argv[1], &data); //parser
-	t = clock() - t;
-    time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
-   	printf("read %f seconds \n", time_taken);
-	
-	
-	t = clock();
+	t_data	data;
+
+	reader(argc, argv[1], &data);
 	create_window(&data);
-   	t = clock() - t;
-    time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
-    printf("create %f seconds \n", time_taken);
-	//printlist(data.matrix, data.max_x, data.max_y);
-	t = clock();
 	draw(&data);
-   	t = clock() - t;
-    time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
-    printf("draw %f seconds \n", time_taken);
-	
-	//printlist(data.matrix, data.max_x, data.max_y);
-	t = clock();
-	mlx_hook(data.win, 2, 1L<<0, keypress, &data);
+	mlx_hook(data.win, 2, 1L << 0, keypress, &data);
 	mlx_loop(data.mlx);
-   	t = clock() - t;
-    time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
-    printf("mlx %f seconds \n", time_taken);
 	exit(0);
 	return (0);
 }
