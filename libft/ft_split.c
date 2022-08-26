@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/04/16 16:01:58 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/07/22 13:02:46 by yeboa         ########   odam.nl         */
+/*   Updated: 2022/08/26 13:46:06 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	**ft_split(char const *s, char c)
 	int		k;
 
 	j = 0;
-	if (!s)
+	if (!s || s[0] == '\0')
 		return (NULL);
 	k = delim((char *)s, c);
 	str = (char **)malloc(sizeof(char *) * (delim(s, c) + 1));

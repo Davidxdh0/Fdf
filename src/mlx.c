@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 17:24:42 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/23 13:10:14 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/24 17:00:46 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,17 @@ int	keypress(int keycode, t_data *data)
 	return (0);
 }
 
+int	keypressx(t_data *data)
+{
+	free_mlx(data);
+	return (0);
+}
+
 void	create_window(t_data *data)
 {
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx, WINDOW_X, WINDOW_Y, "fdf");
-	data->img = mlx_new_image(data->mlx, WINDOW_X, WINDOW_Y);
+	data->win = mlx_new_window(data->mlx, data->widtht, data->low, "fdf");
+	data->img = mlx_new_image(data->mlx, data->widtht, data->low);
 	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, \
 				&data->line_length, &data->endian);
 }

@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/16 12:35:31 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/23 13:29:49 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/26 17:46:09 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,26 @@ void	height(int x, int y, char *file, t_matrix **matrix)
 	int		fd;
 	char	**array;
 	char	*temp;
-	int		i;
 	int		j;
+	int		i;
 
-	i = 0;
+	i = -1;
 	fd = open(file, O_RDONLY);
-	while (i < y && fd != 0)
+	while (++i < y && fd != 0)
 	{
-		j = 0;
+		j = -1;
 		temp = get_next_line(fd);
 		if (temp)
-			array = ft_split(temp, ' ');
-		free(temp);
-		while (j < x && array)
 		{
-			matrix[i][j].z = ft_atoi(array[j]);
-			free(array[j]);
-			j++;
+			array = ft_split(temp, ' ');
+			while (++j < x && array)
+			{
+				matrix[i][j].z = ft_atoi(array[j]);
+				free(array[j]);
+			}
+			free(array);
 		}
-		free(array);
-		i++;
+		free(temp);
 	}
 	close(fd);
 }
@@ -80,10 +80,13 @@ void	height(int x, int y, char *file, t_matrix **matrix)
 // 		j = 0;
 // 		while(j < x)
 // 		{
-// 			//printf("x=%.0f ", matrix[i][j].x);
-// 			//printf("x+1=%.0f ", matrix[i][j+1].x);
-// 			//printf("%.0f ", matrix[i][j].y);
-// 			printf("%.0f ", matrix[i][j].z);
+// 			// if (j == 11)
+// 			{
+// 				printf("x=%.0f ", matrix[i][j].x);
+// 				//printf("x+1=%.0f ", matrix[i][j+1].x);
+// 				printf("y = %.0f ", matrix[i][j].y);
+// 				printf("z = %.0f ", matrix[i][j].z);
+// 			}
 // 			j++;
 // 		}
 // 		printf("\n");

@@ -6,7 +6,7 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/06/15 12:46:43 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/23 13:11:24 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/26 17:48:43 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <mlx.h>
 # include <fcntl.h>
 # include <math.h>
+# include <stdio.h>
 
 typedef struct s_matrix
 {
@@ -40,6 +41,7 @@ typedef struct s_data {
 	int			max_y;
 	int			x;
 	int			y;
+	int			flag;
 	float		m;
 	float		newx;
 	float		max_z;
@@ -51,17 +53,16 @@ typedef struct s_data {
 	t_matrix	**matrix;
 }				t_data;
 
-//main.c
-int			main(int argc, char **argv);
-
 //parse_util.C
-void		max_numbers(char *file, t_data *data);
+void		max_numbers(int i, char *file, t_data *data);
 void		z_values(t_data *data);
 void		reader(int argc, char *file, t_data *data);
+void		max(t_data *data);
 
 //mlx.C
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int			keypress(int keycode, t_data *vars);
+int			keypressx(t_data *data);
 void		create_window(t_data *data);
 
 //fill.c
@@ -83,7 +84,9 @@ void		connect_dots_util2(float newy, float temp, t_data *data);
 void		connect_vert_util(int x, float newy, float temp, t_data *data);
 
 //exit.c
+void		exitmsg(void);
 void		free_arr(char **arg);
 void		free_mlx(t_data *data);
 void		free_map(t_data *data);
+
 #endif

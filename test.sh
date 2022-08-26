@@ -42,8 +42,8 @@ echo pnp_flat
 ./fdf test_maps/pnp_flat.fdf
 echo pyramide
 ./fdf test_maps/pyramide.fdf
-echo valgrind
-valgrind ./fdf test_maps/pyramide.fdf
+# echo valgrind
+# valgrind ./fdf test_maps/pyramide.fdf
 # echo valgrind Wrong file
 # valgrind ./fdf te
 # echo valgrind Wrong number of args

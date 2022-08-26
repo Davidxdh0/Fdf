@@ -1,17 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   ft_atoi_base.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/08/23 13:58:21 by dyeboa        #+#    #+#                 */
+/*   Updated: 2022/08/23 14:03:12 by dyeboa        ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
-#include <stdio.h>
 
-int convert_base(char *str, char *base)
+int	convert_base(char *str, char *base)
 {
-    int i;
-    int j;
-    int number;
-    int len;
+	int	i;
+	int	j;
+	int	number;
+	int	len;
 
-    i = 0;
-    j = 0;
-    number = 0;
-    len = ft_strlen(base);
+	i = 0;
+	j = 0;
+	number = 0;
+	len = ft_strlen(base);
 	while (str[i] && ft_strchr(base, str[i]))
 	{
 		j = 0;
@@ -20,7 +31,7 @@ int convert_base(char *str, char *base)
 		number = (number * len) + j;
 		i++;
 	}
-    return (number);
+	return (number);
 }
 
 int	ft_isspace(int c)
@@ -47,12 +58,12 @@ int	ft_atoi_base(char *str, char *base)
 		if (str[i] == '-' || str[i] == '+')
 			return (0);
 	}
-    if (str[i]== '0')
-    {
-        i++;
-        if (str[i] == 'X' || str[i] == 'x')
-            i++;
-    }   
-    number = convert_base(&str[i], base);
+	if (str[i] == '0')
+	{
+		i++;
+		if (str[i] == 'X' || str[i] == 'x')
+			i++;
+	}
+	number = convert_base(&str[i], base);
 	return (number * minorplus);
 }

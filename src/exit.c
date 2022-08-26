@@ -6,11 +6,18 @@
 /*   By: dyeboa <dyeboa@student.codam.nl>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/08/23 09:57:43 by dyeboa        #+#    #+#                 */
-/*   Updated: 2022/08/23 09:58:04 by dyeboa        ########   odam.nl         */
+/*   Updated: 2022/08/26 17:45:45 by dyeboa        ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	exitmsg(void)
+{
+	write(1, "Empty file", 10);
+	write(1, "\n", 2);
+	exit(1);
+}
 
 void	free_arr(char **arg)
 {
